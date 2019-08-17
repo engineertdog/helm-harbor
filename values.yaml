@@ -1,0 +1,30 @@
+harbor:
+  expose:
+    type: loadBalancer
+    tls:
+      commonName: "harbor.domain.io"
+    loadBalancer:
+      name: harbor
+  externalURL: https://harbor.domain.io
+  persistence:
+    imageChartStorage:
+      type: s3
+      s3:
+        region: us-east-2
+        bucket: get-this-from-your-harbor-terraform-settings
+        #accesskey: awsaccesskey
+        #secretkey: awssecretkey
+        #regionendpoint: http://myobjects.local
+        encrypt: true
+        keyid: "get this ARN from the harbor terraform output"
+        #secure: true
+        #v4auth: true
+        #chunksize: "5242880"
+        #rootdirectory: /s3/object/name/prefix
+        #storageclass: STANDARD
+  secretKey: "change-me"
+  database:
+    internal:
+      image:
+      # The initial superuser password for internal database
+      password: "change-me"
